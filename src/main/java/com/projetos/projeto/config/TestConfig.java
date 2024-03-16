@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.projetos.projeto.entities.Category;
 import com.projetos.projeto.entities.Order;
+import com.projetos.projeto.entities.Product;
 import com.projetos.projeto.entities.User;
 import com.projetos.projeto.entities.enums.OrderStatus;
 import com.projetos.projeto.repositories.CategoryRepository;
 import com.projetos.projeto.repositories.OrderRepository;
+import com.projetos.projeto.repositories.ProductRepository;
 import com.projetos.projeto.repositories.UserRepository;
 
 @Configuration
@@ -25,9 +27,12 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private OrderRepository orderRepository;
-	
+
 	@Autowired
 	private CategoryRepository categoryRepository;
+
+	@Autowired
+	private ProductRepository productRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -35,15 +40,31 @@ public class TestConfig implements CommandLineRunner {
 		Category cat1 = new Category(null, "Electronics");
 		Category cat2 = new Category(null, "Books");
 		Category cat3 = new Category(null, "Computers");
-		
+
+		Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+		Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+		Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+		Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+		Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
-		
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
+		p1.getCategories().add(cat2);
+		p2.getCategories().add(cat1);
+		p2.getCategories().add(cat3);
+		p3.getCategories().add(cat3);
+		p4.getCategories().add(cat3);
+		p5.getCategories().add(cat2);
+
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
 		User u1 = new User(null, "José", "jose@email.com", "11111111", "0000");
 		User u2 = new User(null, "Maria", "maria@email.com", "22222222", "1221");
 
 		Order o1 = new Order(null, Instant.parse("2024-02-20T19:53:07Z"), OrderStatus.SHIPPED, u1);
-		Order o2 = new Order(null, Instant.parse("2024-02-21T03:42:10Z"), OrderStatus.PAID,u2);
-		Order o3 = new Order(null, Instant.parse("2024-01-22T15:21:22Z"), OrderStatus.DELIVERED,u1);
+		Order o2 = new Order(null, Instant.parse("2024-02-21T03:42:10Z"), OrderStatus.PAID, u2);
+		Order o3 = new Order(null, Instant.parse("2024-01-22T15:21:22Z"), OrderStatus.DELIVERED, u1);
 
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
