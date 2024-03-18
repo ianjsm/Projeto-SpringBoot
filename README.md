@@ -1,7 +1,7 @@
 r
 # Projeto Web Services com Spring Boot e JPA/Hibernate
 
-Este é um projeto Spring Boot Java que visa demonstrar a criação de serviços web RESTful utilizando Spring Boot e JPA/Hibernate para acesso ao banco de dados. O projeto aborda diversos objetivos, incluindo a estruturação das camadas lógicas, configuração do banco de dados de teste (H2), povoamento do banco de dados, implementação de operações CRUD (Create, Retrieve, Update, Delete) e tratamento de exceções.
+Este é um projeto Spring Boot Java que visa demonstrar a criação de serviços web utilizando Spring Boot e JPA/Hibernate para acesso ao banco de dados. O projeto aborda diversos objetivos, incluindo a estruturação das camadas lógicas, configuração do banco de dados de teste (H2), povoamento do banco de dados, implementação de operações CRUD (Create, Retrieve, Update, Delete) e tratamento de exceções.
 
 ## Objetivos do Projeto
 
@@ -18,8 +18,7 @@ Este é um projeto Spring Boot Java que visa demonstrar a criação de serviços
 - **Model**: Contém as entidades do domínio da aplicação.
 - **Repository**: Camada responsável por acessar e manipular os dados no banco de dados.
 - **Service**: Camada responsável por implementar a lógica de negócio da aplicação.
-- **Resource**: Controladores RESTful para definir os endpoints da API.
-- **Config**: Configurações específicas da aplicação.
+- **Resource**: Controladores para definir os endpoints da API.
 - **Exception**: Tratamento de exceções personalizado.
 
 ## Tecnologias Utilizadas
